@@ -5,6 +5,9 @@ public class CadastrarCliente {
 	private static Cliente c = new Cliente();
 	
 	public static void renderizar() {
+		
+		c = new Cliente();
+		
 		System.out.println("\n -- CADASTRAR CLIENTE --\n ");
 		
 		//Preenchendo o objeto de cliente
@@ -12,9 +15,12 @@ public class CadastrarCliente {
 		c.setCpf(Console.readString("Digite o CPF: "));
 		
 		//Cadastrar o objeto de cliente na lista de clientes
-		ClienteDAO.cadastrarCliente(c);
+		if(ClienteDAO.cadastrarCliente(c)) {
+			System.out.println("\nCLIENTE CADASTRADO!!!\n");
+		}else {
+			System.out.println("\nESSE CLIENTE JÁ EXISTE!!!\n");
+		}
 		
-		System.out.println("\nCLIENTE CADASTRADO!!!\n");
 	}
 	
 }
