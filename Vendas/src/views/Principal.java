@@ -1,3 +1,10 @@
+package views;
+//MVC - Separação do projeto em camadas
+//Model - Camada das classes de modelo
+//View - Camada de visualização - Classes que interagem com o usuário
+//Controller - 
+
+import utils.Console;
 
 public class Principal {
 

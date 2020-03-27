@@ -1,4 +1,7 @@
+package dao;
 import java.util.ArrayList;
+
+import models.Cliente;
 
 //MVC
 public class ClienteDAO {
