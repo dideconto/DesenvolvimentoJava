@@ -15,6 +15,7 @@ public class CadastrarCliente {
 		c.setCpf(Console.readString("Digite o CPF: "));
 		
 		//Cadastrar o objeto de cliente na lista de clientes
+		//Verificar CPF aqui
 		if(ClienteDAO.cadastrarCliente(c)) {
 			System.out.println("\nCLIENTE CADASTRADO!!!\n");
 		}else {

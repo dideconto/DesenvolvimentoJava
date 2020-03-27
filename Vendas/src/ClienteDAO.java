@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//MVC
 public class ClienteDAO {
 
 	//DAO - Data Access Object

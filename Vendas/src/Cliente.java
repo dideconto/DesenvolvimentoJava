@@ -19,7 +19,7 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 	
-	public Cliente() { }
+	public Cliente() {}
 	
 	private String nome;
 	private String cpf;
@@ -40,6 +40,11 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Nome: " + this.nome + " | CPF: " + this.cpf;
+	}
+	
+	public Boolean verificarCpf() {
+		
+		return true;
 	}
 	
 
