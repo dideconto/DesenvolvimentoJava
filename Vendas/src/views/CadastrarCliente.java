@@ -20,7 +20,6 @@ public class CadastrarCliente {
 
 		// Cadastrar o objeto de cliente na lista de clientes
 		// Verificar CPF aqui
-		
 		if (Validacao.validarCpf(c.getCpf())) {
 			if (ClienteDAO.cadastrarCliente(c)) {
 				System.out.println("\nCLIENTE CADASTRADO!!!\n");
