@@ -13,8 +13,8 @@ public class Venda {
 		return funcionario;
 	}
 
-	public void setFuncionario(Funcionario vendedor) {
-		this.funcionario = vendedor;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public Produto getProduto() {
