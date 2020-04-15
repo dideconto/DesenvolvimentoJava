@@ -1,5 +1,7 @@
 package models;
 
+import utils.Validacao;
+
 public class Cliente {
 	
 	//As classes de modelo vão definir as informações do 
@@ -33,9 +35,13 @@ public class Cliente {
 	}
 	public String getCpf() {
 		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	}	
+	public boolean setCpf(String cpf) {
+		if(Validacao.validarCpf(cpf)) {
+			this.cpf = cpf;
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

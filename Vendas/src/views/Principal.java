@@ -4,12 +4,17 @@ package views;
 //View - Camada de visualização - Classes que interagem com o usuário
 //Controller - 
 
+import dao.Dados;
+import dao.VendaDAO;
+import models.Cliente;
 import models.Venda;
 import utils.Console;
 
 public class Principal {
 
 	public static void main(String[] args) {
+		
+		Dados.inicializar();
 		
 		int opcao;
 		do {
@@ -21,6 +26,8 @@ public class Principal {
 			System.out.println("5 - Cadastrar produto");
 			System.out.println("6 - Listar produtos");
 			System.out.println("7 - Cadastrar venda");
+			System.out.println("8 - Lista vendas");
+			System.out.println("9 - Listar vendas por Cliente");
 			System.out.println("0 - Sair");
 			opcao = Console.readInt("\nDigite a opção escolhida: ");
 			
@@ -45,6 +52,13 @@ public class Principal {
 				break;
 			case 7:
 				CadastrarVenda.renderizar();
+				break;
+			case 8:
+				ListarVendas.renderizar(VendaDAO.retornarVendas());
+				break;
+			case 9:
+				String cpf = Console.readString("Digite o CPF do cliente: ");
+				ListarVendas.renderizar(VendaDAO.retornarVendasPorCliente(cpf));
 				break;
 			case 0:
 				System.out.println("\nSaindo...");

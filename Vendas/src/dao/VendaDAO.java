@@ -17,4 +17,14 @@ public class VendaDAO {
 		return vendas;
 	}
 	
+	public static ArrayList<Venda> retornarVendasPorCliente(String cpf){
+		ArrayList<Venda> vendasAux = new ArrayList<Venda>();
+		for (Venda vendaCadastrada : vendas) {
+			if(vendaCadastrada.getCliente().getCpf().equals(cpf)) {
+				vendasAux.add(vendaCadastrada);
+			}
+		}
+		return vendasAux;
+	}
+	
 }

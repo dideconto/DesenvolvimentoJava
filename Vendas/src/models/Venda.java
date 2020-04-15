@@ -5,17 +5,24 @@ import java.util.ArrayList;
 public class Venda {
 
 	//Criando em relacionamento entre Venda e Cliente: composição ou é um agregação
-	//cliente, funcionário e produto -> Agregação
+	//cliente, funcionário -> Agregação
+	//itensVenda -> Composição
 	private Cliente cliente;
 	private Funcionario funcionario;
-	private ArrayList<ItemVenda> ItensVenda;	
+	private ArrayList<ItemVenda> itensVenda;	
+	
+	public Venda() {
+		cliente = new Cliente();
+		funcionario = new Funcionario();
+		itensVenda = new ArrayList<ItemVenda>();
+	}
 	
 	public ArrayList<ItemVenda> getItensVenda() {
-		return ItensVenda;
+		return itensVenda;
 	}
 
 	public void setItensVenda(ArrayList<ItemVenda> itensVenda) {
-		ItensVenda = itensVenda;
+		itensVenda = itensVenda;
 	}
 
 	public Funcionario getFuncionario() {
