@@ -1,27 +1,18 @@
 package models;
 
-public class Funcionario {
+public class Funcionario extends Pessoa{	
 	
-	private String nome;
-	private String cpf;
-	
-	public String getNome() {
-		return nome;
+	public Funcionario() {
+		super();
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public Funcionario(String nome, String cpf) {
+		super(nome, cpf);
 	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}	
+
 	@Override
 	public String toString() {
-		return "Nome: " + this.nome + " | CPF: " + this.cpf;
+		return "Nome: " + getNome() + " | CPF: " + getCpf();
 	}
-	
-	
 
 }

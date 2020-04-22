@@ -31,7 +31,7 @@ public class ListarVendas {
 			System.out.println();
 			total += totalVenda;
 		}
-		System.out.println("Total: " + totalVenda);
+		System.out.println("Total: " + total);
 		System.out.println();
 	}
 }

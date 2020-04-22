@@ -1,8 +1,6 @@
 package models;
 
-import utils.Validacao;
-
-public class Cliente {
+public class Cliente extends Pessoa{
 	
 	//As classes de modelo vão definir as informações do 
 	//que está sendo modelado
@@ -18,40 +16,14 @@ public class Cliente {
 	//de vendas
 	
 	public Cliente(String nome, String cpf) {
-		this.nome = nome;
-		this.cpf = cpf;
+		super(nome, cpf);
 	}
 	
 	public Cliente() {}
 	
-	private String nome;
-	private String cpf;
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCpf() {
-		return cpf;
-	}	
-	public boolean setCpf(String cpf) {
-		if(Validacao.validarCpf(cpf)) {
-			this.cpf = cpf;
-			return true;
-		}
-		return false;
-	}
-	
 	@Override
 	public String toString() {
-		return "Nome: " + this.nome + " | CPF: " + this.cpf;
-	}
-	
-	public Boolean verificarCpf() {
-		
-		return true;
+		return "Nome: " + getNome() + " | CPF: " + getCpf();
 	}
 	
 
