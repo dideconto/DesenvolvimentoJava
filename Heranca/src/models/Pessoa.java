@@ -1,9 +1,10 @@
+package models;
 
-public class Pessoa {
+public abstract class Pessoa {
 	
 	private String nome;
 	private String sexo;	
-	
+		
 	public Pessoa(String nome, String sexo) {
 		super();
 		this.nome = nome;

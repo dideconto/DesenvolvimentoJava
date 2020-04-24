@@ -1,7 +1,12 @@
+package utils;
 
 public class Wrappers {
 
 	public static void main(String[] args) {	
+		String nome;
+		char teste[];
+		char caractere = 'd';
+		
 		Integer n1;
 		int n2, soma;
 		
