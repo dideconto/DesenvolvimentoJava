@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -8,21 +7,23 @@ import javax.inject.Named;
 
 import dao.ProdutoDAO;
 import models.Produto;
+import utils.JSFUtils;
 
 @Named
 @RequestScoped
 public class ProdutoBean {
-
+	
 	public ProdutoBean() {
 		produto = new Produto();
-		produtos = new ArrayList<Produto>();
+		produtos = ProdutoDAO.listar();
 	}
-
+	
 	private Produto produto;
 	private List<Produto> produtos;
 	
-	public List<Produto> getProdutos() {		
+	public List<Produto> getProdutos() {
 		produtos = ProdutoDAO.listar();
+		System.out.println("------ " + produtos.size());
 		return produtos;
 	}
 
@@ -40,22 +41,14 @@ public class ProdutoBean {
 	
 	public void cadastrar() {
 		ProdutoDAO.cadastrar(produto);
-		System.out.println(produto.getNome() +  ": Cadastrado com sucesso!");
+		JSFUtils.enviarMensagem(produto.getNome() + ": cadastrado com sucesso!");
+		produto = new Produto();
 	}
 	
 	public void remover(Produto produto) {
 		ProdutoDAO.remover(produto);
-		System.out.println(produto.getNome() +  ": Removido com sucesso!");
+		JSFUtils.enviarMensagem(produto.getNome() + ": removido com sucesso!");
+		produto = new Produto();		
 	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
