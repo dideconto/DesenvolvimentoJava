@@ -1,29 +1,31 @@
 package controllers;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import dao.ProdutoDAO;
 import models.Produto;
-import utils.JSFUtils;
 
 @Named
-@RequestScoped
-public class ProdutoBean {
+@SessionScoped
+public class ProdutoBean implements Serializable {
 	
+
 	public ProdutoBean() {
 		produto = new Produto();
 		produtos = ProdutoDAO.listar();
 	}
-	
+
+	private static final long serialVersionUID = -7565175822617267932L;
 	private Produto produto;
 	private List<Produto> produtos;
 	
 	public List<Produto> getProdutos() {
 		produtos = ProdutoDAO.listar();
-		System.out.println("------ " + produtos.size());
 		return produtos;
 	}
 
@@ -39,16 +41,29 @@ public class ProdutoBean {
 		this.produto = produto;
 	}
 	
-	public void cadastrar() {
+	public String cadastrar() {
 		ProdutoDAO.cadastrar(produto);
-		JSFUtils.enviarMensagem(produto.getNome() + ": cadastrado com sucesso!");
 		produto = new Produto();
+		return "Index.xhtml?faces-redirect=true";
 	}
 	
 	public void remover(Produto produto) {
 		ProdutoDAO.remover(produto);
-		JSFUtils.enviarMensagem(produto.getNome() + ": removido com sucesso!");
 		produto = new Produto();		
+	}
+	
+	public String detalhar() {
+		int idProduto = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().
+				getRequestParameterMap().get("idProduto"));
+		produto = ProdutoDAO.buscarPorId(idProduto);
+		return "EditarProduto.xhtml?faces-redirect=true";
+	}
+	
+	public String editar() {
+		ProdutoDAO.editar(produto);
+		System.out.println(produto.getNome());
+		produto = new Produto();
+		return "Index.xhtml?faces-redirect=true";
 	}
 
 }

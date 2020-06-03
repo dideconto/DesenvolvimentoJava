@@ -33,11 +33,12 @@ public class ProdutoDAO {
 		em.getTransaction().commit();
 	}
 	
-//	public static void alterar(Funcionario f) {
-//		JPAUtils.getInstance().getTransaction().begin();
-//		JPAUtils.getInstance().merge(f);
-//		JPAUtils.getInstance().getTransaction().commit();
-//	}
+	public static void editar(Produto p) {
+		EntityManager em = JPAUtils.getInstance();
+		em.getTransaction().begin();
+		em.merge(p);
+		em.getTransaction().commit();
+	}
 	
 }
 

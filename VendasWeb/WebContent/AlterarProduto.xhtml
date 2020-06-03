@@ -4,12 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head>
-	<link rel="stylesheet" href="css/bootstrap.css" />
-</h:head>
-<h:body styleClass="container">
+<h:head></h:head>
+<h:body>
 	<h:form>
-		<h2>Cadastrar Produto</h2>
+		<h2>Alterar Produto</h2>
+		<h:inputHidden value="#{produtoBean.produto.id}" />
 		<h:outputLabel value="Nome:" />
 		<h:inputText value="#{produtoBean.produto.nome}" />
 		<br />
@@ -19,7 +18,7 @@
 		<h:outputLabel value="Preço:" />
 		<h:inputText value="#{produtoBean.produto.preco}" />
 		<br />
-		<h:commandButton action="#{produtoBean.cadastrar()}" value="Cadastrar" styleClass="btn btn-primary" />
+		<h:commandButton action="#{produtoBean.alterar()}" value="Salvar" />
 		<br />
 	</h:form>
 </h:body>

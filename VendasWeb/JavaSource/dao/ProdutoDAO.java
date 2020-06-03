@@ -29,6 +29,18 @@ public class ProdutoDAO {
 		em.remove(em.merge(produto));
 		em.getTransaction().commit();
 	}
+	
+	public static void alterar(Produto produto) {
+		EntityManager em = JPAUtils.getInstance();
+		em.getTransaction().begin();
+		em.merge(produto);
+		em.getTransaction().commit();
+	}
+	
+	public static Produto buscarPorId(int id) {
+		EntityManager em = JPAUtils.getInstance();
+		return em.find(Produto.class, id);
+	}
 
 }
 
