@@ -2,52 +2,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<link rel="stylesheet" href="css/styles.css" />
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-		crossorigin="anonymous"/>
-</h:head>
-<h:body styleClass="container">
-	<h2>Listagem Produtos</h2>
-	<h:form>
-		<h:dataTable value="#{produtoBean.produtos}" var="produto" 
-			styleClass="table table-striped table-hover">
-			<h:column>
-				<f:facet name="header">Id</f:facet>
-				<h:outputText value="#{produto.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{produto.nome}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Quantidade</f:facet>
-				<h:outputText value="#{produto.quantidade}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Preço</f:facet>
-				<h:outputText value="#{produto.preco}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Remover</f:facet>
-				<h:commandButton action="#{produtoBean.remover(produto)}"
-					value="Remover" styleClass="btn btn-danger" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Alterar</f:facet>
-				<h:commandButton action="#{produtoBean.detalhar()}" value="Alterar"
-					 styleClass="btn btn-warning" >
-					<f:param name="idProduto" value="#{produto.id}" />
-				</h:commandButton>
-			</h:column>
-		</h:dataTable>
-	</h:form>
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		
+		<p:spinner></p:spinner>
 	
-</h:body>
+		<h2 style="margin-bottom: 30px">Gerenciamento de produtos</h2>
+		
+		<h:link outcome="CadastrarProduto" value="Novo produto" styleClass="btn btn-primary"/>
+		
+		<h:form style="margin-top: 30px">
+			<h:dataTable value="#{produtoBean.produtos}" var="produto"
+				styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{produto.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{produto.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Quantidade</f:facet>
+					<h:outputText value="#{produto.quantidade}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Preço</f:facet>
+					<h:outputText value="#{produto.preco}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandButton action="#{produtoBean.remover(produto)}"
+						value="Remover" styleClass="btn btn-danger" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandButton action="#{produtoBean.detalhar()}" value="Alterar"
+						styleClass="btn btn-warning">
+						<f:param name="idProduto" value="#{produto.id}" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
 
 

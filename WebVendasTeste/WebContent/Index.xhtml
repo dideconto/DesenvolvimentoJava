@@ -3,44 +3,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
-
-<h:head>
-	<link rel="stylesheet" href="css/bootstrap.css" /></h:head>
-<h:body styleClass="container">
-	<h2>Listar Produtos</h2>
-	<h:messages globalOnly="true" />
-	<h:form>
-		<h:dataTable value="#{produtoBean.produtos}" var="produto" styleClass="table table-striped table-hover">
-			<h:column>
-				<f:facet name="header">Id</f:facet>
-				<h:outputLabel value="#{produto.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:outputLabel value="#{produto.nome}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Preço</f:facet>
-				<h:outputLabel value="#{produto.preco}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Quantidade</f:facet>
-				<h:outputLabel value="#{produto.quantidade}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header"></f:facet>
-				<h:commandButton action="#{produtoBean.remover(produto)}"
-					value="Remover" />
-			</h:column>
-			<h:column>
-				<f:facet name="header"></f:facet>
-				<h:commandButton action="#{produtoBean.detalhar()}" value="Alterar">
-					<f:param name="idProduto" value="#{produto.id}" />
-				</h:commandButton>
-			</h:column>
-		</h:dataTable>
-	</h:form>
-	<c:if test=""></c:if>
-</h:body>
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<p:spinner></p:spinner>
+		<h2>Listar Produtos</h2>
+		<h:link value="Cadastrar Produto" outcome="CadastrarProduto" />
+		<h:messages globalOnly="true" />
+		<h:form>
+			<h:dataTable value="#{produtoBean.produtos}" var="produto"
+				styleClass="table table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputLabel value="#{produto.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputLabel value="#{produto.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Preço</f:facet>
+					<h:outputLabel value="#{produto.preco}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Quantidade</f:facet>
+					<h:outputLabel value="#{produto.quantidade}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:commandButton action="#{produtoBean.remover(produto)}"
+						value="Remover" />
+				</h:column>
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:commandButton action="#{produtoBean.detalhar()}" value="Alterar">
+						<f:param name="idProduto" value="#{produto.id}" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
