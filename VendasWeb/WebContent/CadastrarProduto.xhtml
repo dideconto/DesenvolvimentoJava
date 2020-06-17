@@ -2,24 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
-<h:body>
-	<h:form>
-		<h2>Cadastrar Produto</h2>
-		<h:outputLabel value="Nome:" />
-		<h:inputText value="#{produtoBean.produto.nome}" />
-		<br />
-		<h:outputLabel value="Quantidade:" />
-		<h:inputText value="#{produtoBean.produto.quantidade}" />
-		<br />
-		<h:outputLabel value="Preço:" />
-		<h:inputText value="#{produtoBean.produto.preco}" />
-		<br />
-		<h:commandButton action="#{produtoBean.cadastrar()}" value="Cadastrar" />
-		<br />
-		<!-- <h:messages globalOnly="true"/> -->
-	</h:form>
-</h:body>
+<ui:composition template="/Templates/Template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<h2>Cadastrar Produto</h2>
+			<h:outputLabel value="Nome:" />
+			<h:inputText id="txtNome" value="#{produtoBean.produto.nome}"
+				required="true" requiredMessage="Campo obrigatório!" />
+			<h:message for="txtNome" styleClass="text-danger"/>
+			
+			<br />
+			<h:outputLabel value="Quantidade:" />
+			<h:inputText value="#{produtoBean.produto.quantidade}" />
+			<br />
+			<h:outputLabel value="Preço:" />
+			<h:inputText value="#{produtoBean.produto.preco}" />
+			<br />
+			<h:outputLabel value="Categoria:" />
+			
+			<h:selectOneMenu value="#{produtoBean.produto.categoria}"
+				styleClass="form-control col-4" converter="omnifaces.SelectItemsIndexConverter" >
+				<f:selectItem itemValue="" itemLabel="  -- SELECIONE --  "/>
+				<f:selectItems value="#{produtoBean.categorias}" 
+					var="categoria" itemLabel="#{categoria.nome}" 
+					itemValue="#{categoria}"/>
+			</h:selectOneMenu>
+			
+			<h:commandButton action="#{produtoBean.cadastrar()}"
+				value="Cadastrar" />
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
+
+
+
+
+

@@ -7,9 +7,7 @@
 
 <ui:composition template="/Templates/Template.xhtml">
 	<ui:define name="conteudo">
-		
-		<p:spinner></p:spinner>
-	
+			
 		<h2 style="margin-bottom: 30px">Gerenciamento de produtos</h2>
 		
 		<h:link outcome="CadastrarProduto" value="Novo produto" styleClass="btn btn-primary"/>
@@ -32,6 +30,10 @@
 				<h:column>
 					<f:facet name="header">Preço</f:facet>
 					<h:outputText value="#{produto.preco}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Categoria</f:facet>
+					<h:outputText value="#{produto.categoria.nome}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Remover</f:facet>

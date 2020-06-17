@@ -11,16 +11,37 @@
 	<h:form>
 		<h2>Cadastrar Produto</h2>
 		<h:outputLabel value="Nome:" />
-		<h:inputText value="#{produtoBean.produto.nome}" />
+		<h:inputText id="txtNome" value="#{produtoBean.produto.nome}"
+			required="true" requiredMessage="Campo obrigatório!" />
+		<h:message for="txtNome" styleClass="text-danger" />
 		<br />
+		
 		<h:outputLabel value="Quantidade:" />
-		<h:inputText value="#{produtoBean.produto.quantidade}" />
+		<h:inputText id="txtQuantidade"
+			value="#{produtoBean.produto.quantidade}" required="true"
+			requiredMessage="Preencha o campo" converterMessage="Apenas números">
+			<f:convertNumber integerOnly="true"/>
+			<f:convertNumber />/>
+		</h:inputText>
+		<h:message for="txtQuantidade" styleClass="text-danger" />
+		
 		<br />
 		<h:outputLabel value="Preço:" />
 		<h:inputText value="#{produtoBean.produto.preco}" />
 		<br />
-		<h:commandButton action="#{produtoBean.cadastrar()}" value="Cadastrar" styleClass="btn btn-primary" />
+		<h:outputLabel value="Categoria:" />
+		<h:selectOneMenu value="#{produtoBean.produto.categoria}"
+			styleClass="form-control col-3"
+			converter="omnifaces.SelectItemsIndexConverter">
+			<f:selectItem itemValue="" itemLabel="  -- SELECIONAR --  " />
+			<f:selectItems value="#{produtoBean.categorias}" var="categoria"
+				itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+		</h:selectOneMenu>
 		<br />
+		<h:commandButton action="#{produtoBean.cadastrar()}" value="Cadastrar"
+			styleClass="btn btn-primary" />
+		<br />
+		<h:messages globalOnly="true" />
 	</h:form>
 </h:body>
 </html>

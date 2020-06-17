@@ -1,29 +1,61 @@
-package controllers;
+package controllers; 
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import dao.CategoriaDAO;
 import dao.ProdutoDAO;
+import models.Categoria;
 import models.Produto;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class ProdutoBean implements Serializable {
 	
 
 	public ProdutoBean() {
 		produto = new Produto();
+//		categoria = new Categoria();
 		produtos = ProdutoDAO.listar();
+		categorias = CategoriaDAO.listar();
 	}
 
 	private static final long serialVersionUID = -7565175822617267932L;
 	private Produto produto;
+	private Categoria categoria;
 	private List<Produto> produtos;
+	private List<Categoria> categorias;
+	private int idCategoria;
 	
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Categoria> getCategorias() {
+		categorias = CategoriaDAO.listar();
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
 	public List<Produto> getProdutos() {
 		produtos = ProdutoDAO.listar();
 		return produtos;
@@ -42,6 +74,8 @@ public class ProdutoBean implements Serializable {
 	}
 	
 	public String cadastrar() {
+		System.out.println("############ Categoria: " + produto.getCategoria().getNome());
+//		produto.setCategoria(categoria);
 		ProdutoDAO.cadastrar(produto);
 		produto = new Produto();
 		return "Index.xhtml?faces-redirect=true";

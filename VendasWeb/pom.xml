@@ -40,5 +40,11 @@
 			<artifactId>primefaces</artifactId>
 			<version>7.0</version>
 		</dependency>
+		<!-- Biblioteca do Omnifaces -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>3.6.1</version>
+		</dependency>
 	</dependencies>
 </project>

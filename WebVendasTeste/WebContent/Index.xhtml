@@ -31,6 +31,10 @@
 					<h:outputLabel value="#{produto.quantidade}" />
 				</h:column>
 				<h:column>
+					<f:facet name="header">Categoria</f:facet>
+					<h:outputLabel value="#{produto.categoria.nome}" />
+				</h:column>
+				<h:column>
 					<f:facet name="header"></f:facet>
 					<h:commandButton action="#{produtoBean.remover(produto)}"
 						value="Remover" />
