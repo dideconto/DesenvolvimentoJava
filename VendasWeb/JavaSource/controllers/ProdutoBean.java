@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -13,28 +14,29 @@ import dao.ProdutoDAO;
 import models.Categoria;
 import models.Produto;
 
+//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
+
 @Named
 @SessionScoped
 public class ProdutoBean implements Serializable {
 
-	//Construtor
+	// Construtor
 	public ProdutoBean() {
 		produto = new Produto();
 		produtos = new ArrayList<Produto>();
 		categorias = new ArrayList<Categoria>();
 	}
 
-	//Atributos
+	// Atributos
 	private static final long serialVersionUID = 1306734049083259978L;
 	private Produto produto;
 	private List<Produto> produtos;
 	private List<Categoria> categorias;
 
-	//Ações
+	// Ações
 	public String cadastrar() {
 //		Categoria categoria = CategoriaDAO.buscarPorId(produto.getCategoria().getId());
 //		produto.setCategoria(categoria);
-		ProdutoDAO.cadastrar(produto);
 		produto = new Produto();
 		return "Index.xhtml?faces-redirect=true";
 	}
@@ -49,14 +51,14 @@ public class ProdutoBean implements Serializable {
 		produto = ProdutoDAO.buscarPorId(idProduto);
 		return "AlterarProduto.xhtml?faces-redirect=true";
 	}
-	
+
 	public String alterar() {
 		ProdutoDAO.alterar(produto);
 		produto = new Produto();
 		return "Index.xhtml?faces-redirect=true";
 	}
 
-	//Getter & Setters
+	// Getter & Setters
 	public List<Categoria> getCategorias() {
 		categorias = CategoriaDAO.listar();
 		return categorias;
@@ -82,15 +84,5 @@ public class ProdutoBean implements Serializable {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-

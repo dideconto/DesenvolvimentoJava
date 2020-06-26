@@ -7,33 +7,70 @@
 
 <ui:composition template="/Templates/Template.xhtml">
 	<ui:define name="conteudo">
-		<h:form>
-			<h2>Cadastrar Produto</h2>
-			<h:outputLabel value="Nome:" />
-			<h:inputText id="txtNome" value="#{produtoBean.produto.nome}"
-				required="true" requiredMessage="Campo obrigatório!" />
-			<h:message for="txtNome" styleClass="text-danger"/>
-			
-			<br />
-			<h:outputLabel value="Quantidade:" />
-			<h:inputText value="#{produtoBean.produto.quantidade}" />
-			<br />
-			<h:outputLabel value="Preço:" />
-			<h:inputText value="#{produtoBean.produto.preco}" />
-			<br />
-			<h:outputLabel value="Categoria:" />
-			
-			<h:selectOneMenu value="#{produtoBean.produto.categoria}"
-				styleClass="form-control col-4" converter="omnifaces.SelectItemsIndexConverter" >
-				<f:selectItem itemValue="" itemLabel="  -- SELECIONE --  "/>
-				<f:selectItems value="#{produtoBean.categorias}" 
-					var="categoria" itemLabel="#{categoria.nome}" 
-					itemValue="#{categoria}"/>
-			</h:selectOneMenu>
-			
-			<h:commandButton action="#{produtoBean.cadastrar()}"
-				value="Cadastrar" />
-			<br />
+
+		<h:form styleClass="needs-validation">
+			<fieldset>
+				<legend>Cadastrar Produto</legend>
+				<p:messages id="messages" showDetail="true" closable="true">
+					<p:autoUpdate />
+				</p:messages>
+				<div class="form-group">
+					<h:outputLabel value="Nome:" />
+					<h:inputText id="txtNome" value="#{produtoBean.produto.nome}"
+						required="true" requiredMessage="Campo obrigatório!"
+						styleClass="form-control col-6" />
+					<h:message for="txtNome" styleClass="text-danger" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="Quantidade:" />
+					<h:inputText id="txtQuantidade"
+						value="#{produtoBean.produto.quantidade}"
+						styleClass="form-control col-6" required="true"
+						requiredMessage="Campo obrigatório!"
+						converterMessage="Apenas números">						
+						<f:convertNumber integerOnly="true"/>						
+					</h:inputText>
+					<h:message for="txtQuantidade" styleClass="text-danger" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="Preço:" />
+					<h:inputText value="#{produtoBean.produto.preco}"
+						styleClass="form-control col-6" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="Data de vencimento:" />
+					<h:inputText id="txtDataVencimento"
+						value="#{produtoBean.produto.data}"
+						styleClass="form-control col-6" required="true"
+						requiredMessage="Campo obrigatório!"
+						converterMessage="Datas no formato dd/mm/yyyy">						
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="GMT-3"/>						
+					</h:inputText>
+					<h:message for="txtDataVencimento" styleClass="text-danger" />
+				</div>	
+				
+				<div class="form-group">
+					<h:outputLabel value="Categoria:" />
+					<h:selectOneMenu id="drpCategorias"
+						value="#{produtoBean.produto.categoria}"
+						styleClass="form-control col-6"
+						converter="omnifaces.SelectItemsIndexConverter"
+						required="true" requiredMessage="Campo obrigatório!">
+						<f:selectItem itemValue="#{null}" itemLabel="  -- SELECIONE --  " />
+						<f:selectItems value="#{produtoBean.categorias}" var="categoria"
+							itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+					</h:selectOneMenu>
+					<h:message for="drpCategorias" styleClass="text-danger" />
+				</div>
+
+				<h:commandButton action="#{produtoBean.cadastrar()}"
+					value="Cadastrar" styleClass="btn btn-primary" />
+
+			</fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

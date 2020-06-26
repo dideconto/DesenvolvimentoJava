@@ -1,9 +1,13 @@
 package models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Produto {
@@ -18,9 +22,19 @@ public class Produto {
 	private String nome;
 	private int quantidade;
 	private double preco;	
+	
 	@ManyToOne
 	private Categoria categoria;
 	
+	@Temporal(TemporalType.DATE)
+	private Date data;
+	
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
 	public Categoria getCategoria() {
 		return categoria;
 	}
